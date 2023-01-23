@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" style="margin-left:250px;margin-top:100px;">
+            <div class="card-body">
+              <h5 class="card-title">Staff Table</h5>
+			  <div class="table-responsive">
+               <table class="table" >
+                  <thead>
+                    <tr>
+                      <th scope="col">Staff Name</th>
+                      <th scope="col">Designation</th>
+                      <th scope="col">Image</th>
+
+                    </tr>
+                  </thead>
+                           {% for i in data %}
+                   <tr>
+
+                        <td>{{i.name}}</td>
+                        <td>{{i.desi}}</td>
+                        <td>
+                            <img src="{{i.image.url}}" style="width:100px;">
+                        </td>
+                        <td>
+                         <form action="{% url 'staffedit' dataid=i.id %}">
+                                    <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Edit</button>
+
+                                  </div>
+                             </form>
+                </td>
+                            <td>
+                                <form action="{% url 'staffdelete' dataid=i.id %}">
+                                    <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Delete</button>
+                                </form>
+                                  </div>
+                        </td>
+                    </tr>
+  {% endfor %}
+                </table>
+            </div>
+            </div>
+          </div>
+</body>
+</html>
+{% endblock %}
